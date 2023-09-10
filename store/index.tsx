@@ -1,4 +1,4 @@
-import { ThunkAction, configureStore, createSlice } from '@reduxjs/toolkit';
+import { ThunkAction, configureStore } from '@reduxjs/toolkit';
 import { Action } from 'redux';
 import { apiSlice } from '@/store/api/api.slice';
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
@@ -10,12 +10,12 @@ const makeStore = () =>
   configureStore({
     reducer: {
       [themeConfigSlice.name]: themeConfigSlice.reducer,
-      // [apiSlice.reducerPath]: apiSlice.reducer
+      [apiSlice.reducerPath]: apiSlice.reducer
     },
     devTools: true,
     // Adding the api middleware enables caching, invalidation, polling,
     // and other useful features of `rtk-query`.
-    // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware),
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware),
   });
 
 // optional, but required for refetchOnFocus/refetchOnReconnect behaviors

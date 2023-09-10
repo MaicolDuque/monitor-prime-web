@@ -1,12 +1,15 @@
-const Index = () => {
+import { useGetTodosQuery } from '@/store/api/api.slice';
 
-    return (
-        <>
-            <div>
-                <h1>starter page</h1>
-            </div>
-        </>
-    );
+const Index = () => {
+  const { data } = useGetTodosQuery(undefined);
+  console.log({ data });
+  return (
+    <>
+      <div>
+        <h1>starter page</h1>
+      </div>
+    </>
+  );
 };
 
 export default Index;
