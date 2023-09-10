@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import themeConfig from '../theme.config';
+import themeConfig from '../../theme.config';
 
 const initialState = {
     isDarkMode: false,
@@ -32,7 +32,7 @@ const initialState = {
     ],
 };
 
-const themeConfigSlice = createSlice({
+export const themeConfigSlice = createSlice({
     name: 'auth',
     initialState: initialState,
     reducers: {
@@ -108,4 +108,4 @@ const themeConfigSlice = createSlice({
 
 export const { toggleTheme, toggleMenu, toggleLayout, toggleRTL, toggleAnimation, toggleNavbar, toggleSemidark, toggleLocale, toggleSidebar, setPageTitle } = themeConfigSlice.actions;
 
-export default themeConfigSlice.reducer;
+// export default themeConfigSlice.reducer;

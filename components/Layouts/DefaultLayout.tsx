@@ -1,7 +1,7 @@
-import { IRootState } from '@/store';
-import { toggleSidebar } from '@/store/themeConfigSlice';
+
+import { toggleSidebar } from '@/store/slices/themeConfigSlice';
 import { PropsWithChildren, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import App from '../../App';
 import Footer from './Footer';
 import Header from './Header';
@@ -9,12 +9,13 @@ import Sidebar from './Sidebar';
 import Setting from './Setting';
 import Portals from '../Portals';
 import { useRouter } from 'next/router';
+import { useAppSelector } from '@/store';
 
 const DefaultLayout = ({ children }: PropsWithChildren) => {
     const router = useRouter();
     const [showLoader, setShowLoader] = useState(true);
     const [showTopButton, setShowTopButton] = useState(false);
-    const themeConfig = useSelector((state: IRootState) => state.themeConfig);
+    const themeConfig = useAppSelector((state) => state.auth);
     const [animation, setAnimation] = useState(themeConfig.animation);
     const dispatch = useDispatch();
 

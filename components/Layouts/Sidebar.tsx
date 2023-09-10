@@ -1,19 +1,20 @@
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
+
 import Link from 'next/link';
-import { toggleSidebar } from '../../store/themeConfigSlice';
+import { toggleSidebar } from '../../store/slices/themeConfigSlice';
 import AnimateHeight from 'react-animate-height';
-import { IRootState } from '../../store';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { useAppSelector } from '@/store';
+import { useDispatch } from 'react-redux';
 
 const Sidebar = () => {
     const router = useRouter();
     const [currentMenu, setCurrentMenu] = useState<string>('');
     const [errorSubMenu, setErrorSubMenu] = useState(false);
-    const themeConfig = useSelector((state: IRootState) => state.themeConfig);
-    const semidark = useSelector((state: IRootState) => state.themeConfig.semidark);
+    const themeConfig = useAppSelector((state) => state.auth);
+    const semidark = useAppSelector((state) => state.auth.semidark);
     const toggleMenu = (value: string) => {
         setCurrentMenu((oldValue) => {
             return oldValue === value ? '' : value;

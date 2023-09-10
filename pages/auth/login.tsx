@@ -1,12 +1,12 @@
 import Link from 'next/link';
-import { useDispatch, useSelector } from 'react-redux';
-import { IRootState } from '../../store';
 import { useEffect, useState } from 'react';
-import { setPageTitle, toggleLocale, toggleRTL } from '../../store/themeConfigSlice';
+import { setPageTitle, toggleLocale, toggleRTL } from '../../store/slices/themeConfigSlice';
 import { useRouter } from 'next/router';
 import BlankLayout from '@/components/Layouts/BlankLayout';
 import Dropdown from '@/components/Dropdown';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { useAppSelector } from '@/store';
 
 const LoginBoxed = () => {
     const dispatch = useDispatch();
@@ -20,9 +20,9 @@ const LoginBoxed = () => {
         router.push('/');
     };
 
-    const isRtl = useSelector((state: IRootState) => state.themeConfig.rtlClass) === 'rtl' ? true : false;
+    const isRtl = useAppSelector((state) => state.auth.rtlClass) === 'rtl' ? true : false;
 
-    const themeConfig = useSelector((state: IRootState) => state.themeConfig);
+    const themeConfig = useAppSelector((state) => state.auth);
     const setLocale = (flag: string) => {
         setFlag(flag);
         if (flag.toLowerCase() === 'ae') {
