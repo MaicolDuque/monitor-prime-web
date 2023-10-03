@@ -1,12 +1,12 @@
-import { useGetTodosQuery } from '@/store/api/api.slice';
+import Image from 'next/image';
+import soon1 from '../public/assets/images/auth/coming-soon-object1.png';
 
 const Index = () => {
-  const { data } = useGetTodosQuery(undefined);
-  console.log({ data });
   return (
     <>
       <div>
         <h1>starter page</h1>
+        <Image src={soon1} alt="Image" />
       </div>
     </>
   );

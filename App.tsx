@@ -2,11 +2,11 @@ import { PropsWithChildren, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { toggleRTL, toggleTheme, toggleLocale, toggleMenu, toggleLayout, toggleAnimation, toggleNavbar, toggleSemidark } from './store/slices/themeConfigSlice';
-import { useAppSelector } from '@/store';
+import { useAppDispatch, useAppSelector } from '@/store';
 
 function App({ children }: PropsWithChildren) {
   const themeConfig = useAppSelector((state) => state.auth);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { i18n } = useTranslation();
 
   useEffect(() => {
