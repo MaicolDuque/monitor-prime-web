@@ -1,6 +1,7 @@
-import Link from 'next/link';
-import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
+import Cookies from 'js-cookie'
+import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import BlankLayout from '@/components/Layouts/BlankLayout';
 import Dropdown from '@/components/Dropdown';
@@ -14,6 +15,7 @@ import image5 from '../../public/assets/images/auth/bg-gradient.png';
 import { setPageTitle, toggleLocale, toggleRTL } from '@/store/slices/themeConfigSlice';
 import { useAppSelector } from '@/store';
 import { useLoginMutation } from '@/store/api/auth/auth.slice';
+import { AuthLoginResponse } from '@/store/api/auth/auth.model';
 
 const LoginBoxed = () => {
   const dispatch = useDispatch();
@@ -31,7 +33,8 @@ const LoginBoxed = () => {
     const password = passwordRef.current?.value ?? '';
     console.log({ email, password });
     loginUser({ email, password }).then((res) => {
-      console.log({ res });
+      Cookies.set('token', (res as { data: AuthLoginResponse }).data.access_token, { expires: 7 })
+      router.push('/')
     });
   };
 
